@@ -1,0 +1,41 @@
+<?php
+/*
+ * AUTH_METHOD
+ * This is set to determine whether to use the internal authentication, or external.
+ * For my purposes, this uses CROWD, however I have added internal auth due to popular demand.  
+ * 
+ */
+ 
+$config['AUTH_METHOD'] = "CROWD";			// Set to INTERNAL to use internal authentication.
+$config['ADMIN_PASSWORD'] = 'asdqwe123';	// Set to whatever you want the admin account password to be.
+$config['ALLOW_REGISTRATION'] = TRUE;		// Only applies to when using internal auth, will not affect any external authentication.
+
+$config['REIM_NAME'] = "Affordable Care";	// Name that will be displayed in header.
+
+$config['CROWD_USERNAME'] = '';
+$config['CROWD_PASSWORD'] = '';
+$config['CROWD_URL'] = '';
+$config['AUTH_GROUPS'] = array(
+	"REIMBURSEMENT" => "",	// Base reimbursement role
+	"REIMDIRS"		=> "",	// Admin role
+	"CAPSWARM"		=> "",					// Group for verifying capswarm membership
+	"CAPSWARM_REIM"	=> "",			// Group that can handle capswarm reimbursement
+	"ADMINS"		=> array("")
+);
+
+$config['MANAGER_TOKEN'] = '';
+$config['MANAGER_BASE'] = '';
+$config['getStats'] = FALSE;
+$config['MANAGER_CLIENT_ID'] = "";
+$config['MANAGER_CLIENT_SECRET'] = '';
+
+$config['sess_driver'] = '';
+$config['sess_cookie_name'] = '';
+$config['sess_save_path'] = '';
+
+$db['host'] = "127.0.0.1";
+$db['username'] = "";
+$db['password'] = "";
+$db['path'] = "";
+
+?>
