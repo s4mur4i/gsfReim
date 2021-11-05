@@ -509,23 +509,29 @@ class Home extends CI_Controller {
 			if( isset( $crestData['solar_system_id'] ) ){
 			    $ret['data']['sysID'] = $crestData['solar_system_id'];
 			    $sysData = $this->getSystem($crestData['solar_system_id']);
-			}
-			if( isset( $crestData['solarSystemName'] ) ){
-			    $ret['data']['sysName'] = $sysData['solarSystemName'];
+			    if ( isset($sysData['solarSystemName']) ) {
+			        $ret['data']['sysName'] = $sysData['solarSystemName'];
+			    }
 			}
 
 			if( isset( $crestData['victim'] ) ){
 				$ret['data']['vicID'] = $crestData['victim']['character_id'];
 				$charData = $this->getCharacter($crestData['victim']['character_id']);
-				$ret['data']['vicName'] = $charData['name'];
-
+				if ( isset($charData['name']) ) {
+				    $ret['data']['vicName'] = $charData['name'];
+                }
 				$ret['data']['vicShipTypeID'] = $crestData['victim']['ship_type_id'];
 				$shipData = $this->getItem($crestData['victim']['ship_type_id']);
-				$ret['data']['vicShipTypeName'] = $shipData['typeName'];
+				if ( isset($sysData['solarSystemName']) ) {
+			     $ret['data']['sysName'] = $sysData['solarSystemName'];
+				}
+
 
 				$ret['data']['vicCorpID'] = $crestData['victim']['corporation_id'];
 				$corpData = $this->getCorporation($crestData['victim']['corporation_id']);
-				$ret['data']['vicCorpName'] = $corpData['name'];
+				if (isset($corpData['name'])) {
+				  $ret['data']['vicCorpName'] = $corpData['name'];
+				}
 
 				$ret['data']['damageTaken'] = $crestData['victim']['damage_taken'];
 			}
