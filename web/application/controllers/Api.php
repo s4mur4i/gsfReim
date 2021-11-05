@@ -77,7 +77,7 @@ class Api extends CI_Controller {
 			//We have some data, lets loop and process this shit
 			foreach($corpData->result() as $row){
 				//We're going to be lazy and just use REPLACE INTO's here. Its less work than a SELECT and then UPDATE/INSERT.
-				$data = $this->curllib->makeRequest('GET', sprintf('https://esi.evetech.net/v3/alliances/%s/?datasource=tranquility&language=en-us',$row->allianceID));
+				$data = $this->curllib->makeRequest('GET', sprintf('https://esi.evetech.net/v4/alliances/%s/?datasource=tranquility&language=en-us',$row->allianceID));
 				$dataArray = json_decode($data, TRUE);
 				if(count($dataArray) > 0){
 					$dti = array(
@@ -103,7 +103,7 @@ class Api extends CI_Controller {
 		if($corpData->num_rows() > 0){
 			//We have a list of distinct corp ID's, lets loop this bitch and pull the pub data from CCP
 			foreach($corpData->result() as $row){
-				$data = $this->curllib->makeRequest('GET', sprintf('https://esi.evetech.net/v4/corporations/%s/?datasource=tranquility&language=en-us',$row->corpID));
+				$data = $this->curllib->makeRequest('GET', sprintf('https://esi.evetech.net/v5/corporations/%s/?datasource=tranquility&language=en-us',$row->corpID));
 				$dataArray = json_decode($data, TRUE);
 				if(count($dataArray) > 0){
 					if(isset($dataArray['alliance_id'])){
