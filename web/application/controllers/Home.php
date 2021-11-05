@@ -499,31 +499,43 @@ class Home extends CI_Controller {
 				$ret['err'] = TRUE;
 				return $ret;
 			}
-			$ret['data']['killID'] = $crestData['killmail_id'];
-			$ret['data']['killTime'] = $crestData['killmail_time'];
+			if( isset( $crestData['killmail_id'] ) ){
+				$ret['data']['killID'] = $crestData['killmail_id'];
+            }
+			if( isset( $crestData['killmail_time'] ) ){
+				$ret['data']['killTime'] = $crestData['killmail_time'];
+			}
 
-			$ret['data']['sysID'] = $crestData['solar_system_id'];
-			$sysData = $this->getSystem($crestData['solar_system_id']);
-			$ret['data']['sysName'] = $sysData['solarSystemName'];
+			if( isset( $crestData['solar_system_id'] ) ){
+			    $ret['data']['sysID'] = $crestData['solar_system_id'];
+			    $sysData = $this->getSystem($crestData['solar_system_id']);
+			}
+			if( isset( $crestData['solarSystemName'] ) ){
+			    $ret['data']['sysName'] = $sysData['solarSystemName'];
+			}
 
-			$ret['data']['vicID'] = $crestData['victim']['character_id'];
-			$charData = $this->getCharacter($crestData['victim']['character_id']);
-			$ret['data']['vicName'] = $charData['name'];
+			if( isset( $crestData['victim'] ) ){
+				$ret['data']['vicID'] = $crestData['victim']['character_id'];
+				$charData = $this->getCharacter($crestData['victim']['character_id']);
+				$ret['data']['vicName'] = $charData['name'];
 
-			$ret['data']['vicShipTypeID'] = $crestData['victim']['ship_type_id'];
-			$shipData = $this->getItem($crestData['victim']['ship_type_id']);
-			$ret['data']['vicShipTypeName'] = $shipData['typeName'];
+				$ret['data']['vicShipTypeID'] = $crestData['victim']['ship_type_id'];
+				$shipData = $this->getItem($crestData['victim']['ship_type_id']);
+				$ret['data']['vicShipTypeName'] = $shipData['typeName'];
 
-			$ret['data']['vicCorpID'] = $crestData['victim']['corporation_id'];
-			$corpData = $this->getCorporation($crestData['victim']['corporation_id']);
-			$ret['data']['vicCorpName'] = $corpData['name'];
+				$ret['data']['vicCorpID'] = $crestData['victim']['corporation_id'];
+				$corpData = $this->getCorporation($crestData['victim']['corporation_id']);
+				$ret['data']['vicCorpName'] = $corpData['name'];
 
-			$ret['data']['damageTaken'] = $crestData['victim']['damage_taken'];
+				$ret['data']['damageTaken'] = $crestData['victim']['damage_taken'];
+			}
 
-			$attackers = $crestData["attackers"];
-			$ret['data']['numAttackers'] = count($attackers);
-			$attackerArr = array();
-			$ret['data']['attackerArr'] = $attackerArr;
+			if( isset( $crestData['attackers'] ) ){
+			    $attackers = $crestData["attackers"];
+			    $ret['data']['numAttackers'] = count($attackers);
+			    $attackerArr = array();
+			    $ret['data']['attackerArr'] = $attackerArr;
+			}
 			/*
 			$i = 0;
 			if(count($attackers) > 0){
